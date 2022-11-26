@@ -1,11 +1,12 @@
 const express = require("express");
 const bodyParsar = require("body-parser");
+require('dotenv').config();
 const Cors = require("cors");
 const app = express();
 const userRouter = require("./src/routes/routing");
 app.use(Cors());
-app.use(bodyParsar.json());
-app.use(bodyParsar.urlencoded({ extended: true }));
+app.use(bodyParsar.json({limit: '50mb'}));
+app.use(bodyParsar.urlencoded({ extended: true,limit:'50mb' }));
 app.use("/", userRouter);
 app.listen(process.env.PORT || 8000);
 console.log("app started at port 8000");

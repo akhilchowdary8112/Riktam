@@ -8,4 +8,5 @@ router.post("/addproblem", Collector.addproblem);
 router.post("/addcomment", Collector.addcomment);
 router.post("/fetchproblems", Collector.fetchproblems);
 router.post("/addlike",Collector.addlike);
+router.patch("/updateStatus",Collector.updateStatus);
 module.exports = router;

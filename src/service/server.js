@@ -55,3 +55,11 @@ exports.fetchproblems = async function (reqbody) {
     return e;
   }
 };
+exports.updateStatus = async function (reqbody) {
+  try {
+    let data = await db.updateStatus(reqbody);
+    return data;
+  } catch (e) {
+    return e;
+  }
+};

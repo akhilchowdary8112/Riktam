@@ -9,7 +9,6 @@ mongoose
     }
   )
   .catch((e) => {
-    console.error(e);
     throw Error("Error connecting to MongoDB: " + e);
   });
 const schema = {

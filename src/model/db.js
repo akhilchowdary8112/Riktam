@@ -1,6 +1,18 @@
 const { signuporloginmodel, problemmodel } = require("./model");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({ 
+  cloud_name: process.env.CLOUDINARY_NAME, 
+  api_key: process.env.CLOUDINARY_API_KEY, 
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true
+});
+const options = {
+  use_filename: false,
+  unique_filename: true,
+  overwrite: true,
+};
 exports.getLoginInfo = async ({ email, password }) => {
   let result = await signuporloginmodel.find({ email: email });
   let pswd = result[0].password;
@@ -18,13 +30,19 @@ exports.postsignup = async (reqbody) => {
   return res;
 };
 exports.addproblem = async (reqbody) => {
-  let res = await problemmodel.create(reqbody);
-  return res;
+  const {title,description,postedby,createddate,time,date,location,attachment}=reqbody;
+  try{
+    const result = await cloudinary.uploader.upload(attachment, options);
+    let res = await problemmodel.create({title,description,postedby,createddate,time,date,location,attachment:result.url});
+    return res;
+  }catch(err){
+    return err;
+  }
 };
 exports.addcomment = async (reqbody) => {
   let res = await problemmodel.updateOne(
     { _id: reqbody._id },
-    { $set: { comments: reqbody.comments } }
+    { $push: { comments: reqbody.comments } }
   );
   return res;
 };
@@ -35,7 +53,7 @@ exports.addlikes = async (reqbody) => {
   );
   return res;
 };
-exports.fetchproblems = async (reqbody) => {
+exports.fetchproblems = async () => {
   let res = await problemmodel.find().sort({ posttime: -1 });
   return res;
 };
@@ -90,10 +108,17 @@ async function hashpassword({
   });
 }
 async function decrypthash(password, h) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     bcrypt.compare(password, h, function (err, result) {
       if (err) resolve("err");
       resolve(result);
     });
   });
 }
+exports.updateStatus = async (reqbody) => {
+  let res = await problemmodel.updateOne(
+    { _id: reqbody.id },
+    {$set: {status:reqbody.status}}
+  );
+  return res;
+};

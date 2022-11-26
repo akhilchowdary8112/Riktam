@@ -8,7 +8,6 @@ exports.getLogin = async function (req, res) {
       return res.status(400).json({ status: 400, message: data.message });
     }
   } catch (e) {
-    console.error(e)
     return res.status(500).json({ status: 500, message: e });
   }
 };
@@ -56,6 +55,14 @@ exports.addlike = async function (req, res) {
 exports.fetchproblems = async function (req, res) {
   try {
     let data = await server.fetchproblems(req.body);
+    return res.status(200).json({ status: 200, message: data });
+  } catch (e) {
+    return res.status(500).json({ status: 500, message: e });
+  }
+};
+exports.updateStatus = async function (req, res) {
+  try {
+    let data = await server.updateStatus(req.body);
     return res.status(200).json({ status: 200, message: data });
   } catch (e) {
     return res.status(500).json({ status: 500, message: e });
