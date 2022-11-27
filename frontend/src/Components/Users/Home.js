@@ -117,7 +117,7 @@ export default function Home() {
                           }}
                           key={c.comment}
                         >
-                          {d.postedby} : {c.comment}
+                          {c.postedby} : {c.comment}
                         </div>
                       </>
                     );

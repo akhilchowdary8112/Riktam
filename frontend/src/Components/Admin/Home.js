@@ -115,15 +115,7 @@ export default function Home() {
               </span>
               <br />
               <br />
-              {d.answered && (
-                <>
-                  <span>Answer : {d.answer[0].answer}</span>
-                  <br />
-                  <span>posted by {d.answer[0].answerby}</span>
-                  <br />
-                </>
-              )}
-                            {
+              {
               d.likedby.includes(sessionStorage.getItem("name")) ? 
               <LikeTwoTone style={{fontSize:"150%"}}/>  : 
               <LikeOutlined style={{fontSize:"150%"}} onClick={(e)=>{submitlike(d)}}/>
@@ -153,7 +145,7 @@ export default function Home() {
                           }}
                           key={c.comment}
                         >
-                          {d.postedby}: {c.comment}
+                          {c.postedby}: {c.comment}
                         </div>
                       </>
                     );
