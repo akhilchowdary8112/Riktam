@@ -82,9 +82,6 @@ export default function Home() {
               <br />
               <span>Description : {d.description}</span>
               <br />
-              <span>{d.date}</span>
-              <br/>
-              <span>{d.time}</span>
               <span style={{ float: "right" }}>
                 <div>Posted By: {d.postedby} on {moment(d.createddate).format("ddd mm yyyy hh:MM:ss")}</div>
                 <div>Problem Since: {d.date},{d.time}</div>

@@ -68,35 +68,35 @@ export default function RaiseProblem() {
         <Form.Item
           label="Type of Issue"
           name="title"
-          rules={[{ required: true, message: 'Red' }]}
+          rules={[{ required: true, message: 'Required' }]}
         >
           <Input/>
         </Form.Item>
         <Form.Item
           label="Problem Info"
           name="description"
-          rules={[{ required: true, message: 'Red' }]}
+          rules={[{ required: true, message: 'Required' }]}
         >
           <Input/>
         </Form.Item>
         <Form.Item
           label="Location"
           name="location"
-          rules={[{ required: true, message: 'Red' }]}
+          rules={[{ required: true, message: 'Required' }]}
         >
           <Input/>
         </Form.Item>
         <Form.Item
           label="Select Date"
           name="date"
-          rules={[{ required: true, message: 'Red' }]}
+          rules={[{ required: true, message: 'Required' }]}
         >
           <DatePicker format={dateFormat}/>
         </Form.Item>
         <Form.Item
           label="Select Time"
           name="time"
-          rules={[{ required: true, message: 'Red' }]}
+          rules={[{ required: true, message: 'Required' }]}
         >
           <TimePicker format={"h:mm:ss a"}/>
         </Form.Item>
