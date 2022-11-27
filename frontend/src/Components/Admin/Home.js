@@ -5,6 +5,7 @@ import { Card, Input, message,Select, Button, Form, Empty } from "antd";
 import { addcomment,modifyStatus,addlike} from "../../store/api";
 import { Tag } from 'antd';
 import { fetchproblemsas } from "../../store/slices";
+import moment from 'moment';
 export default function Home() {
   const [form] = Form.useForm();
   const data = useSelector((state) => state.User.admin.doubts);
@@ -106,10 +107,11 @@ export default function Home() {
             </Select>
             </span>
               <br />
-              <span>Descrption : {d.description}</span>
+              <span>Description : {d.description}</span>
               <br />
               <span style={{ float: "right" }}>
-                posted by: {d.postedby} on {d.createddate}
+                <div>Posted By: {d.postedby} on {moment(d.createddate).format("ddd mm yyyy hh:MM:ss")}</div>
+                <div>Problem Since: {d.date},{d.time}</div>
               </span>
               <br />
               <br />
