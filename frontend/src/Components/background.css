@@ -1,0 +1,8 @@
+.site {
+    background-image: url('../Images/wave.svg');
+    background-repeat: no-repeat;
+    height: 100vh;
+    max-width: 100vw;
+    background-size: cover !important;
+    overflow: auto;
+}
