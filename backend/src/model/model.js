@@ -28,7 +28,7 @@ const problemschema = {
   time: String,
   location:String,
   attachment: String,
-  createddate:String,
+  createddate:{type: Date,default:Date.now},
   status: {type:String,default:"Open"},
   likes:{type:String,default:0},
   likedby:{type:Array,default:[]}

@@ -30,10 +30,10 @@ exports.postsignup = async (reqbody) => {
   return res;
 };
 exports.addproblem = async (reqbody) => {
-  const {title,description,postedby,createddate,time,date,location,attachment}=reqbody;
+  const {title,description,postedby,time,date,location,attachment}=reqbody;
   try{
     const result = await cloudinary.uploader.upload(attachment, options);
-    let res = await problemmodel.create({title,description,postedby,createddate,time,date,location,attachment:result.url});
+    let res = await problemmodel.create({title,description,postedby,time,date,location,attachment:result.url});
     return res;
   }catch(err){
     return err;

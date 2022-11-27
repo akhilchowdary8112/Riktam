@@ -28,14 +28,6 @@ export default function RaiseProblem() {
       title:values.title,
       description:values.description,
       postedby: sessionStorage.getItem("name"),
-      createddate:
-        date.toLocaleString("en-us", { month: "short" }) +
-        " " +
-        date.getDay() +
-        ", " +
-        date.getHours() +
-        ":" +
-        date.getMinutes(),
       time:values.time.format("h:mm:ss a"),
       date:values.date.format(dateFormat),
       location:values.location,

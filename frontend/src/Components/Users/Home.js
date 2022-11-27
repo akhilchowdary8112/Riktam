@@ -4,6 +4,7 @@ import { Card, Input, message, Button, Form, Empty } from "antd";
 import { addcomment, addlike } from "../../store/api";
 import { fetchproblemsas } from "../../store/slices";
 import { LikeTwoTone,LikeOutlined } from '@ant-design/icons';
+import moment from 'moment';
 export default function Home() {
   const [form] = Form.useForm();
   const data = useSelector((state) => state.User.user.doubts ||[]);
@@ -79,13 +80,14 @@ export default function Home() {
                   {d.status}
                 </span>
               <br />
-              <span>Descrption : {d.description}</span>
+              <span>Description : {d.description}</span>
               <br />
               <span>{d.date}</span>
               <br/>
               <span>{d.time}</span>
               <span style={{ float: "right" }}>
-              PostedBy By: {d.postedby} on {d.createddate}
+                <div>Posted By: {d.postedby} on {moment(d.createddate).format("ddd mm yyyy hh:MM:ss")}</div>
+                <div>Problem Since: {d.date},{d.time}</div>
               </span>
               <br />
               {
