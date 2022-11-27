@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Card, Input, message, Button, Form } from "antd";
+import { Card, Input, message, Button, Form, Empty } from "antd";
 import { addcomment, addlike } from "../../store/api";
 import { fetchproblemsas } from "../../store/slices";
 import { LikeTwoTone,LikeOutlined } from '@ant-design/icons';
@@ -54,7 +54,7 @@ export default function Home() {
       </span>
       <br />
       <br />
-      {data.map((d) => {
+      {data.length>0 ? data.map((d) => {
         return (
           <>
             <Card
@@ -171,7 +171,15 @@ export default function Home() {
             <br />
           </>
         );
-      })}
+      })
+      :
+      <Empty 
+      description={
+        <span>
+          Problems Not Found
+        </span>
+      }/>
+      }
     </div>
   );
 }
